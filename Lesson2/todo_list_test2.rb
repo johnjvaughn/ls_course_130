@@ -1,3 +1,5 @@
+require 'simplecov'
+SimpleCov.start
 require 'minitest/autorun'
 require "minitest/reporters"
 Minitest::Reporters.use!
@@ -89,6 +91,13 @@ class TodoListTest < MiniTest::Test
     assert_equal(true, @todo3.done?)
   end
 
+  def test_mark_done
+    @list.mark_done("Clean room")
+    assert(@todo2.done?)
+    refute(@todo1.done?)
+    refute(@todo3.done?)
+  end
+
   def test_done_bang
     @list.done!
     assert(@todo1.done?)
@@ -97,12 +106,36 @@ class TodoListTest < MiniTest::Test
     assert(@list.done?)
   end
 
+  def test_mark_all_undone
+    @list.mark_all_done
+    assert(@list.done?)
+    @list.mark_all_undone
+    refute(@list.done?)
+    assert_equal([], @list.all_done.to_a)
+  end
+
   def test_remove_at
     assert_raises(IndexError) { @list.remove_at(4) }
     assert_equal(@todo2, @list.remove_at(1))
     assert_equal([@todo1, @todo3], @list.to_a)
   end
 
+  def test_find_by_title
+    assert_equal(@todo3, @list.find_by_title("Go to gym"))
+  end
+
+  def test_all_done
+    assert_equal([], @list.all_done.to_a)
+    @list.mark_done_at(1)
+    assert_equal([@todo2], @list.all_done.to_a)
+  end
+  
+  def test_all_not_done
+    assert_equal(@todos, @list.all_not_done.to_a)
+    @list.mark_done_at(0)
+    assert_equal([@todo2, @todo3], @list.all_not_done.to_a)
+  end
+  
   def test_to_s
     output = <<~OUTPUT
     ---- Today's Todos ----
