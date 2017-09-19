@@ -18,7 +18,8 @@ class Palindromes
   end
 
   def largest
-    Struct.new(:value, :factors).new(largest_product, palindromes[largest_product])
+    Struct.new(:value, :factors).new(largest_product,
+                                     palindromes[largest_product])
   end
 
   def smallest_product
@@ -26,7 +27,8 @@ class Palindromes
   end
 
   def smallest
-    Struct.new(:value, :factors).new(smallest_product, palindromes[smallest_product])
+    Struct.new(:value, :factors).new(smallest_product,
+                                     palindromes[smallest_product])
   end
 
   private

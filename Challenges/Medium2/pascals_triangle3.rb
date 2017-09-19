@@ -20,11 +20,12 @@ class Triangle
   def build_triangle(num_rows)
     (0...num_rows).map do |row|
       (0..row).map do |col|
-        row.fact / (col.fact * (row - col).fact) # binomial coefficients a(k) = n!/(k!(n-k)!)
+        # binomial coefficients a(k) = n!/(k!(n-k)!)
+        row.fact / (col.fact * (row - col).fact)
       end
     end
   end
 end
 
-tri = Triangle.new(6)
+tri = Triangle.new(17)
 p tri.rows

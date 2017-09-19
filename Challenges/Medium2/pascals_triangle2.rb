@@ -1,4 +1,4 @@
-#recursive method
+# recursive method
 
 class Triangle
   def initialize(num_rows)

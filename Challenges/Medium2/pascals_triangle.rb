@@ -34,3 +34,4 @@ class Triangle
 end
 
 tri = Triangle.new(4)
+p tri.rows
