@@ -12,10 +12,10 @@ class Diamond
     (diamond_arr + diamond_arr[0..-2].reverse).join()
   end
 
-  def self.make_one_row(letter, width)
-    return "A".center(width).concat("\n") if letter == "A"
-    num_spaces = 2 * ALPHABET.index(letter) - 1
-    (letter + " " * num_spaces + letter).center(width) + "\n"
+  def self.make_one_row(ltr, width)
+    return "A".center(width).concat("\n") if ltr == "A"
+    num_spaces = 2 * ALPHABET.index(ltr) - 1
+    (ltr + " " * num_spaces + ltr).center(width) + "\n"
   end
 end
 
